@@ -2,71 +2,6 @@ const osmosis = require('osmosis');
 const fs = require('fs');
 var request = require('request');
 
-var categories=fs.readFileSync("categories.json", 'utf8');
-console.log(JSON.parse(categories));
-var obj = JSON.parse(categories);
-obj.forEach(function(item) {
-	item.subCategories.forEach(function(item2) {
-		console.log(item2.href);
-		osmosis
-			.get('http://www.fravega.com'+item2.href)
-			.find('.wrapData')
-			.set('name', 'a')
-			.set('price', '.BestPrice')
-			//.log(console.log)
-			.data(function(data) {
-				console.log(data);      
-			})
-	});
-});
-/*
-osmosis
-    .get('www.google.com')
-    .set({'Title': 'title'})  
-    .data(console.log)  
-	
-osmosis
-    .get('https://www.google.co.in/search?q=analytics')
-    .find('#botstuff')
-    .set({'related': ['.card-section .brs_col p a']})
-    .data(function(data) {
-        console.log(data);
-    })
-
-osmosis
-   .get('https://www.google.co.in/search?q=analytics')
-   .paginate('#navcnt table tr > td a[href]', 5)
-   .find('#botstuff')
-   .set({'related': ['.card-section .brs_col p a']})
-   .data(console.log)
-   .log(console.log) 
-   .error(console.error) 
-*/
-/*
-let savedData = [];
-osmosis
-   .get('http://apps.shopify.com/categories/sales')
-   .find('.resourcescontent ul.app-card-grid')
-   .follow('li a[href]')
-   .find('.resourcescontent')
-   .set({
-       'appname': '.app-header__details h1',
-       'email': '#AppInfo table tbody tr:nth-child(2) td > a'
-    })
-   .log(console.log)   // enable logging to see what is does.
-   .data(function(data) {
-      console.log(data);
-      savedData.push(data);
-   })
-   .done(function() {
-      fs.writeFile('data.json', JSON.stringify( savedData, null, 4), function(err) {
-        if(err) console.error(err);
-        else console.log('Data Saved to data.json file');
-      })
-   });
-*/
-
-/*
 request('https://www.fravega.online/airtable/appmoF9qZ9JocJmvZ/category', function (error, response, body) {
 	if (error) {
 		console.log(error);
@@ -133,20 +68,8 @@ request('https://www.fravega.online/airtable/appmoF9qZ9JocJmvZ/category', functi
 				}
 				listCategories.push(obj);
 			});
-			var saved = fs.writeFileSync('categories.json', JSON.stringify(listCategories), 'utf8');
-			//console.log(JSON.stringify(listCategories));
+			var saved = fs.writeFileSync('fravega_categories.json', JSON.stringify(listCategories), 'utf8');
 		});
 	});
 });
-/*
-osmosis
-   .get('http://www.fravega.com')
-   .find('.home_catDestacadas__btn')
-   .set('location')
-   .log(console.log)
-   .data(function(data) {
-      console.log(data);      
-   })
-*/
-
 
