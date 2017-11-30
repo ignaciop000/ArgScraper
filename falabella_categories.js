@@ -8,6 +8,5 @@ osmosis
 	.set('name', 'h4')
 	.set('href', 'href')
 	.data(function(data) {
-		console.log(data);
-		
+		console.log(data);		
 	})
